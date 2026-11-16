@@ -51,8 +51,9 @@
   .hero-photo img{object-position:center 60%}
   .story>div{padding-left:max(55px,calc((100vw - 1200px)/2))}
   .story img{max-height:560px}
-  .mosaic{height:clamp(335px,28vw,440px)}
-  .mosaic>img{height:100%}
+  .mosaic{height:clamp(335px,28vw,440px);grid-template-rows:minmax(0,1fr)}
+  .mosaic>img{height:100%;min-height:0;min-width:0}
+  .mosaic>.corner{min-height:0;min-width:0}
   .corner h2{padding-left:max(28px,calc((100vw - 1200px)/2))}
   .seasonal{max-width:1200px;margin-inline:auto}
   .visit>div:first-child{padding-left:max(50px,calc((100vw - 1200px)/2))}
