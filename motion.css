@@ -1,0 +1,81 @@
+/* 001 · The daily ritual: steam, crema rings and the unhurried lift of a cup. */
+:root{--ritual-ease:cubic-bezier(.18,.75,.25,1);--crema:#c78648}
+header{position:sticky;top:0;z-index:20;transition:box-shadow .35s,background .35s}
+header.is-scrolled{background:rgba(255,247,233,.97);box-shadow:0 6px 25px #31190e12}
+header .brand>span{position:relative;display:grid;place-items:center;width:42px;height:42px;font-size:30px}
+.brew-ring{position:absolute;inset:0;width:42px;height:42px;overflow:visible;rotate:-90deg;pointer-events:none;fill:none;stroke-width:1.4}
+.brew-ring .ring-track{stroke:#dec8aa;opacity:.6}
+.brew-ring .ring-fill{stroke:#9d451b;stroke-dasharray:1;stroke-dashoffset:calc(1 - var(--brew-progress,0));stroke-linecap:round}
+header nav a[aria-current="location"]:not(.button){color:var(--color-copper);text-decoration:underline;text-underline-offset:7px}
+.steam-mark{display:block;width:64px;height:42px;fill:none;stroke:#e1ae77;stroke-width:1.25;stroke-linecap:round;margin-bottom:16px;overflow:visible}
+.hero-copy .eyebrow{margin-bottom:12px}
+.hero h1 .title-line{display:block}
+.photo-frame{display:block;overflow:hidden;border-radius:14px;margin-bottom:17px;isolation:isolate}
+.menu-grid .photo-frame img{margin:0;border-radius:0}
+.gallery .photo-frame{margin:0;border-radius:10px}
+.story>.story-photo{padding:0;overflow:hidden;min-width:0;min-height:0}
+.story .story-photo img{height:100%;width:100%}
+.mosaic{grid-template-rows:minmax(0,1fr)}
+.mosaic>img,.mosaic>.corner{min-height:0;min-width:0}
+.ritual-rule{transform-origin:left center}
+.section-heading .ritual-rule{transform-origin:center}
+.benefits{position:relative}
+.benefits article{position:relative;isolation:isolate}
+.benefits article>span{display:inline-block;transition:color .5s,transform .7s var(--ritual-ease)}
+.benefits article::before{content:'';position:absolute;inset:-10px 15px;border-radius:50%;background:radial-gradient(ellipse,#c786481c,transparent 70%);opacity:0;z-index:-1;transition:opacity .7s}
+.benefits article.is-warm::before{opacity:1}
+.benefits article.is-warm>span{color:#ad541f;transform:translateY(-3px)}
+.motion-enabled [data-arrival].awaiting{opacity:0;translate:0 24px}
+.motion-enabled [data-arrival="photo"].awaiting{opacity:1;translate:none;clip-path:inset(0 0 12% 0);filter:brightness(.8)}
+.motion-enabled [data-arrival]{transition:opacity .85s var(--ritual-ease) var(--arrival-delay,0ms),translate 1s var(--ritual-ease) var(--arrival-delay,0ms),clip-path 1.1s var(--ritual-ease) var(--arrival-delay,0ms),filter 1.1s var(--ritual-ease) var(--arrival-delay,0ms)}
+.motion-enabled [data-arrival="photo"]{clip-path:inset(0);filter:none}
+.motion-enabled [data-arrival].instant-arrival{transition:none!important}
+.motion-enabled .awaiting .ritual-rule{scale:0 1}
+.motion-enabled .ritual-rule{transition:scale 1s var(--ritual-ease) .2s}
+.motion-enabled .photo-frame img{transition:transform 1.2s var(--ritual-ease)}
+.motion-enabled .hero-photo{translate:0 var(--hero-drift,0px);scale:1.035}
+.motion-enabled .hero-copy{translate:0 var(--copy-drift,0px)}
+.motion-enabled .hero-photo img{animation:morning-light 1.8s var(--ritual-ease) both}
+.motion-enabled .hero-copy>*{animation:ritual-arrive 1s var(--ritual-ease) both;animation-delay:calc(var(--entrance-order,0)*110ms)}
+.motion-enabled .hero-copy h1{animation:none}
+.motion-enabled .title-line{animation:ritual-arrive 1.25s var(--ritual-ease) both}
+.motion-enabled .title-line:nth-child(2){animation-delay:180ms}
+.motion-enabled .steam-mark path{stroke-dasharray:1;animation:steam-unfurl 2.4s var(--ritual-ease) both;animation-delay:calc(var(--steam-order,0)*180ms)}
+.motion-enabled .steam-mark path:nth-child(2){--steam-order:1}
+.motion-enabled .steam-mark path:nth-child(3){--steam-order:2}
+.motion-background *,.motion-background *::before,.motion-background *::after{animation-play-state:paused!important}
+.motion-enabled .benefits::before{content:'';position:absolute;top:38px;left:16.66%;right:16.66%;height:1px;background:linear-gradient(90deg,#c7864880,#c7864820);scale:var(--ritual-flow,0) 1;transform-origin:left;pointer-events:none}
+.button{position:relative;isolation:isolate;overflow:hidden;transition:background .25s,transform .25s,box-shadow .35s}
+.button::after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 25%,#fff2d530 50%,transparent 75%);translate:-110% 0;pointer-events:none}
+.motion-enabled .button:active{transform:translateY(0) scale(.97)}
+.motion-enabled .faq details[open] p,.motion-enabled .menu-details:not([hidden]),.motion-enabled header nav.open{animation:ritual-arrive .35s var(--ritual-ease)}
+.faq summary::after{transition:rotate .35s var(--ritual-ease)}
+@media(hover:hover) and (pointer:fine){
+ .motion-enabled .menu-grid article{transition:transform .6s var(--ritual-ease)}
+ .motion-enabled .menu-grid article:hover{transform:perspective(1100px) rotateX(var(--cup-tilt-x,0deg)) rotateY(var(--cup-tilt-y,0deg)) translateY(-4px)}
+ .motion-enabled .photo-frame:hover img{transform:scale(1.055)}
+ .motion-enabled .button:hover{box-shadow:0 8px 24px #31190e24}
+ .motion-enabled .button:hover::after,.motion-enabled .button:focus-visible::after{translate:110% 0;transition:translate .8s var(--ritual-ease)}
+}
+@keyframes ritual-arrive{from{opacity:0;translate:0 20px}to{opacity:1;translate:0 0}}
+@keyframes morning-light{from{transform:scale(1.06);filter:brightness(.75)}to{transform:scale(1);filter:brightness(1)}}
+@keyframes steam-unfurl{from{stroke-dashoffset:1;opacity:0;translate:0 7px}to{stroke-dashoffset:0;opacity:1;translate:0 0}}
+@media(max-width:760px){
+ header nav{display:flex}
+ .nav-toggle{display:none}
+ .nav-ready .nav-toggle{display:block}
+ .nav-ready header nav:not(.open){display:none}
+ header .brand>span,.brew-ring{width:36px;height:36px}
+ header .brand>span{font-size:26px}
+ .steam-mark{width:50px;height:32px;margin-bottom:12px}
+ .motion-enabled .hero-photo{translate:none;scale:1}
+ .motion-enabled .hero-copy{translate:none}
+ .motion-enabled .benefits::before{display:none}
+}
+@media(max-width:480px){.story .story-photo img{height:270px}}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto!important}
+ *,*::before,*::after{animation:none!important;transition:none!important}
+ .motion-enabled [data-arrival].awaiting{opacity:1;translate:none;clip-path:none;filter:none}
+ .motion-enabled .hero-photo,.motion-enabled .hero-copy{translate:none;scale:1}
+}

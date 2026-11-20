@@ -1,5 +1,16 @@
 const toggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('#navigation');
+document.documentElement.classList.add('nav-ready');
+const mobileNavigation = matchMedia('(max-width: 760px)');
+function closeNavigation(restoreFocus = false) {
+  nav.classList.remove('open');
+  toggle.setAttribute('aria-expanded', 'false');
+  if (restoreFocus) toggle.focus();
+}
+mobileNavigation.addEventListener('change', () => closeNavigation());
+document.addEventListener('click', event => {
+  if (nav.classList.contains('open') && !event.target.closest('header')) closeNavigation();
+});
 toggle.addEventListener('click', () => {
   const expanded = toggle.getAttribute('aria-expanded') !== 'true';
   toggle.setAttribute('aria-expanded', String(expanded));
